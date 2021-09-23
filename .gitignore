@@ -1,0 +1,7 @@
+.vs/
+/*/obj/
+/*/bin/
+packages/
+/*/*/package-lock.json
+ChatWeb/wwwroot/node_modules
+ChatWeb/wwwroot/dir
