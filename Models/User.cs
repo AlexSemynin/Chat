@@ -21,12 +21,17 @@ namespace Models
 
 
 
-        public List<Room> Rooms { get; set; }
+        public ICollection<Room> Rooms { get; set; }
+
+        //public User()
+        //{
+        //    Rooms = new HashSet<Room>();
+        //}
     }
 
     public enum UserRoles
     {
         Admin = 0,
-        User
+        User = 1
     }
 }
