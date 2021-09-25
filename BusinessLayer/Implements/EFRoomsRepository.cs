@@ -28,7 +28,7 @@ namespace BusinessLayer.Implements
             var room = new Room
             {
                 Id = GenerateNewId(),
-                Admin = admin,
+                AuthorId = admin.Id,
                 Name = name,
             };
             _rooms.Add(room);
@@ -40,7 +40,7 @@ namespace BusinessLayer.Implements
             var room = new Room
             {
                 Id = GenerateNewId(),
-                Admin = admin,
+                AuthorId = admin.Id,
                 Name = name,
                 Users = new List<User> { companion }
             };
@@ -49,14 +49,14 @@ namespace BusinessLayer.Implements
             return room;
         }
 
-        public Room CreateRoom(User admin, string name, List<User> companion)
+        public Room CreateRoom(User admin, string name, List<User> companions)
         {
             var room = new Room
             {
                 Id = GenerateNewId(),
-                Admin = admin,
+                AuthorId = admin.Id,
                 Name = name,
-                Users = companion
+                Users = companions
             };
             _rooms.Add(room);
             _dbContext.SaveChanges();
@@ -70,12 +70,12 @@ namespace BusinessLayer.Implements
             return GetRoomById(id);
         }
 
-        public List<Room> GetUserRooms(User user)
+        public ICollection<Room> GetUserRooms(User user)
         {
             return user.Rooms;
         }
 
-        public List<Room> GetUserRooms(string userId)
+        public ICollection<Room> GetUserRooms(string userId)
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
             if (user is null)

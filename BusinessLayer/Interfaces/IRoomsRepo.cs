@@ -10,8 +10,8 @@ namespace BusinessLayer.Interfaces
         public Room CreateRoom(User admin, string name, List<User> users);
 
         public Room GetRoom(string id);
-        public List<Room> GetUserRooms(string userId);
-        public List<Room> GetUserRooms(User user);
+        public ICollection<Room> GetUserRooms(string userId);
+        public ICollection<Room> GetUserRooms(User user);
 
         public Room ChangeRoomName(string roomId, string name);
         public Room AddUsers(string roomId, List<User> users);

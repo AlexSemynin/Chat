@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
@@ -9,11 +10,19 @@ namespace Models
         [Key]
         public string Id { get; set; }
         public string Name { get; set; }
-        public User Admin { get; set; }
+        public string AuthorId { get; set; }
 
 
 
         public List<Message> Messages { get; set; }
-        public List<User> Users { get; set; }
+
+        public ICollection<User> Users { get; set; }
+
+        //public virtual ICollection<User> Users { get; set; }
+
+        //public Room()
+        //{
+
+        //}
     }
 }
