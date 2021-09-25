@@ -37,7 +37,7 @@ namespace ChatWeb
 
             services.AddTransient<IUsersRepo, EFUserRepository>();
             services.AddTransient<IMessagesRepo, EFMessagesRepository>();
-            services.AddTransient<EFRoomsRepository, EFRoomsRepository>();
+            services.AddTransient<IRoomsRepo, EFRoomsRepository>();
 
             services.AddScoped<DataManager>();
         }
