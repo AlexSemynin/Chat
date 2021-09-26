@@ -22,7 +22,7 @@
     "skipLibCheck": true, /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
     "rootDir": "./src",
-    "outDir": "./build/"
+    "outDir": "./build/dir"
 
     /* Basic Options */
     // "incremental": true,                   /* Enable incremental compilation */

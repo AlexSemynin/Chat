@@ -1,9 +1,14 @@
-﻿import React, { ReactNode } from "react";
+﻿import { Button } from "devextreme-react/button";
+import 'devextreme/dist/css/dx.light.css';
+import React, { ReactNode } from "react";
 
 //import Button from "devextreme-react/button";
 
 export const App = () => {
     return (
-        <h1>Hallo</h1>
+        <Button
+            type="success"
+            text="Click"
+        />
     )
 }
