@@ -1,6 +1,6 @@
 ﻿import { Button } from "devextreme-react/button";
 import 'devextreme/dist/css/dx.light.css';
-import React, { ReactNode } from "react";
+import React from "react";
 
 //import Button from "devextreme-react/button";
 
