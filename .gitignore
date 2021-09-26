@@ -3,5 +3,5 @@
 /*/bin/
 packages/
 /*/*/package-lock.json
-WebApp/wwwroot/node_modules
-WebApp/wwwroot/dir
+ChatWeb/wwwroot/node_modules
+ChatWeb/wwwroot/build/
