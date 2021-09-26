@@ -85,7 +85,31 @@ module.exports = function (env, argv) {
                         // Compiles Sass to CSS
                         "sass-loader",
                     ],
+                },
+                {
+                    test: /\.(ttf|eot|woff|woff2)$/i,
+                    use: [
+                        {
+                            loader: "file-loader",
+                            options: {
+                                name: "[name].[contenthash].[ext]",
+                                outputPath: 'resources/fonts/'
+                            }
+                        }
+                    ]
                 }
+                //{
+                //    test: /\.(woff|woff2|ttf|eot)$/i,
+                //    use: [
+                //        {
+                //            loader: 'file-loader',
+                //            options: {
+                //                name: '[name].[contenthash].[ext]',
+                //                outputPath: 'resources/fonts/',
+                //            },
+                //        },
+                //    ],
+                //}
 
                 //{
                 //    test: /.(sa|sc|c)ss$/,
