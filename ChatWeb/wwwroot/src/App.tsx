@@ -1,13 +1,12 @@
 ﻿import { Button } from "devextreme-react/button";
 import 'devextreme/dist/css/dx.light.css';
-import { inject, observer } from "mobx-react";
 import React, { useRef, useState } from "react";
-import LayoutStore from "./stores/layoutStore";
 import themes from "devextreme/ui/themes";
+import { useStores } from ".";
 
 
-export const App = inject("LayoutStore")(observer((props: { LayoutStore?: LayoutStore }) => {
-
+export const App = () => {
+    const { layoutStore, locationInfo } = useStores();
     return (
         <>
             <div>Текст</div>
@@ -15,10 +14,10 @@ export const App = inject("LayoutStore")(observer((props: { LayoutStore?: Layout
                 type="normal"
                 text="SWITCH THEME"
                 onClick={() => {
-                    props.LayoutStore?.ToggleTheme();
-                    themes.current(props.LayoutStore?.Theme!);
+                    layoutStore.ToggleTheme();
+                    themes.current(layoutStore.Theme!);
                 }}
             />
         </>
     )
-}));
+};

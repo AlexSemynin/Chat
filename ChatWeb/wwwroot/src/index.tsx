@@ -9,13 +9,16 @@ import MainStore from './stores/MainStore';
 
 const mainStore = new MainStore();
 
+const storeContext = React.createContext(mainStore);
+export const useStores = () => React.useContext(storeContext);
+
 //themes.initialized(() =>
 ReactDOM.render(
-    <Provider MainStore={mainStore} {...mainStore}>
-        <Router history = {mainStore.LocationInfo}>
+    <storeContext.Provider value={{...mainStore}}>
+        <Router history={mainStore.locationInfo}>
             <App />
         </Router>
-    </Provider>,
+    </storeContext.Provider>,
     document.getElementById('root')
 )
 //);

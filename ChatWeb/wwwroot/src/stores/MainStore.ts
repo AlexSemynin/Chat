@@ -4,11 +4,11 @@ import { createBrowserHistory } from 'history';
 
 
 export default class MainStore {
-    public readonly LayoutStore: LayoutStore;
-    public readonly LocationInfo: History;
+    public readonly layoutStore: LayoutStore;
+    public readonly locationInfo: History;
 
     constructor() {
-        this.LayoutStore = new LayoutStore(this);
-        this.LocationInfo = createBrowserHistory();
+        this.layoutStore = new LayoutStore(this);
+        this.locationInfo = createBrowserHistory();
     }
 }
