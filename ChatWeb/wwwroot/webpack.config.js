@@ -133,8 +133,10 @@ module.exports = function (env, argv) {
         plugins: [
             new CopyPlugin({
                 patterns: [
-                    { from: path.resolve(__dirname, "public/index.html"), to: buildPath } //скопровать файл в выходную дирректорию
+                    { from: path.resolve(__dirname, "public/index.html"), to: buildPath }, //скопровать файл в выходную дирректорию
                     //{ from: path.resolve(__dirname, "public/favicon.ico"), to: buildPath }
+                    { from: path.resolve(__dirname, "public/css/dx.generic.Dark.css"), to: `${buildPath}/css` },
+                    { from: path.resolve(__dirname, "public/css/dx.generic.Light.css"), to: `${buildPath}/css` }
                 ],
             })
         ]

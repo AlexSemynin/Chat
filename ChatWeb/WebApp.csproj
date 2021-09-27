@@ -39,10 +39,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\build\" />
+    <Folder Include="wwwroot\public\css\" />
     <Folder Include="wwwroot\src\pages\" />
     <Folder Include="wwwroot\src\components\" />
     <Folder Include="wwwroot\src\services\" />
-    <Folder Include="wwwroot\src\stores\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties wwwroot_4package_1json__JsonSchema="https://ide-integration.batect.dev/v1/configSchema.json" /></VisualStudio></ProjectExtensions>
