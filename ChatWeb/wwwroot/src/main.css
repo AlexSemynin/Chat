@@ -11,7 +11,7 @@
 
 
 body {
-    background: var(--linearGradient);
+    /*background: var(--linearGradient);*/
     box-sizing: content-box; /*только ширина/высота контента при задниии. Границы, отступы не учитываются*/
     box-sizing: border-box;
     padding: 0;
