@@ -1,14 +1,23 @@
 ﻿import { Button } from "devextreme-react/button";
 import 'devextreme/dist/css/dx.light.css';
-import React, { ReactNode } from "react";
+import React, { useRef, useState } from "react";
+import themes from "devextreme/ui/themes";
+import { useStores } from ".";
 
-//import Button from "devextreme-react/button";
 
 export const App = () => {
+    const { layoutStore, locationInfo } = useStores();
     return (
-        <Button
-            type="success"
-            text="Click"
-        />
+        <>
+            <div>Текст</div>
+            <Button
+                type="normal"
+                text="SWITCH THEME"
+                onClick={() => {
+                    layoutStore.ToggleTheme();
+                    themes.current(layoutStore.Theme!);
+                }}
+            />
+        </>
     )
-}
+};
