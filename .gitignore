@@ -5,3 +5,4 @@ packages/
 /*/*/package-lock.json
 ChatWeb/wwwroot/node_modules
 ChatWeb/wwwroot/build/
+ChatWeb/wwwroot/public/css/
