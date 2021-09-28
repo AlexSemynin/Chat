@@ -8,7 +8,7 @@ export default class LayoutStore {
     constructor(mainStore: MainStore) {
         makeObservable(this);
         this._mainStore = mainStore;
-        this.Theme = <dxThemes>localStorage.getItem('theme') ?? dxThemes.Light;
+        this.Theme = <dxThemes>localStorage.getItem('theme') ?? dxThemes.Dark; //при задании начальной темы - смотри ./public/index.html: head: link "dx-theme": data-active: true
         localStorage.setItem('theme', this.Theme);
     }
 
@@ -43,6 +43,6 @@ export default class LayoutStore {
 }
 
 export enum dxThemes {
-    Dark = "dx.generic.dark",
-    Light = "dx.generic.light"
+    Dark = "generic.dark",
+    Light = "generic.light"
 }
