@@ -1,6 +1,9 @@
 ﻿import { LinearGauge } from "devextreme-react";
-import { action, computed, makeObservable, observable } from "mobx";
+import { action, computed, makeObservable, observable, runInAction } from "mobx";
+import { StorageHelper } from "../services/StorageHelper";
 import MainStore from "./MainStore";
+import themes from "devextreme/ui/themes";
+
 
 export default class LayoutStore {
     private _mainStore;
@@ -8,8 +11,11 @@ export default class LayoutStore {
     constructor(mainStore: MainStore) {
         makeObservable(this);
         this._mainStore = mainStore;
-        this.Theme = <dxThemes>localStorage.getItem('theme') ?? dxThemes.Dark; //при задании начальной темы - смотри ./public/index.html: head: link "dx-theme": data-active: true
-        localStorage.setItem('theme', this.Theme);
+        this.Theme = <dxThemes>StorageHelper.get({ name: "layoutSettings" }) ?? dxThemes.Dark; //при задании начальной темы - смотри ./public/index.html: head: link "dx-theme": data-active: true
+
+        themes.current(this.Theme);
+        StorageHelper.set({name:"layoutSettings", data: this.Theme});
+        //document.querySelector('body')?.style.setProperty('--linearGradient', this.Theme==dxThemes.Light ? grad.day : grad.night);
     }
 
     @observable
@@ -20,8 +26,11 @@ export default class LayoutStore {
         if (theme == this.Theme)
             return;
 
-        this.Theme = theme;
-        localStorage.setItem('theme', theme);
+        runInAction(()=>{
+            this.Theme = theme;
+            StorageHelper.set({name:"layoutSettings", data: theme});
+            themes.current(this.Theme);
+        })
     }
 
     @action
@@ -37,7 +46,11 @@ export default class LayoutStore {
                 this.Theme = dxThemes.Light;
                 break;
         }
-        localStorage.setItem('theme', this.Theme);
+        runInAction(()=>{
+            StorageHelper.set({name:"layoutSettings", data: this.Theme});
+            themes.current(this.Theme);
+        })
+
     }
 
 }
