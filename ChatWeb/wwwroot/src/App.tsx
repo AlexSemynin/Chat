@@ -1,26 +1,49 @@
-﻿import { Button } from "devextreme-react/button";
+﻿import { Switch, Route, Redirect } from "react-router";
 //import 'devextreme/dist/css/dx.light.css';
 import React, { useEffect, useRef, useState } from "react";
 import themes from "devextreme/ui/themes";
 import { useStores } from ".";
+import {authRoutes,withoutAuthRoutes} from "./app-routes";
+import {HomePage} from "./pages";
+import MainLayout from './components/mainLayout/mainLayout';
 
 
 export const App = () => {
-    const { layoutStore, locationInfo } = useStores();
-    useEffect(() => {
-        themes.current(layoutStore.Theme);
-    }, [])
+    const { layoutStore, authStore , locationInfo } = useStores();
+
     return (
-        <>
-            <div>Текст</div>
-            <Button
-                type="normal"
-                text="SWITCH THEME"
-                onClick={() => {
-                    layoutStore.ToggleTheme();
-                    themes.current(layoutStore.Theme);
-                }}
-            />
-        </>
+
+        <MainLayout>
+        {
+            authStore.isLogin ?
+            <Switch>
+                {
+                    authRoutes.map((obj) => (
+                        <Route
+                            exact
+                            path={obj.path}
+                            component={obj.component}
+                            key={obj.path}
+                        />
+                    ))
+                }
+            </Switch> 
+            :
+            <Switch>
+                {
+                    withoutAuthRoutes.map((obj) => (
+                        <Route
+                            exact
+                            path={obj.path}
+                            component={obj.component}
+                            key={obj.path}
+                        />
+                    ))
+                }
+                <Route exact={true} path="/home" component={HomePage} />
+                <Redirect from='/' to='/home' />
+            </Switch>
+        }
+        </MainLayout>
     )
 };

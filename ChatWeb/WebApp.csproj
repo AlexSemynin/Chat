@@ -41,8 +41,8 @@
     <Folder Include="wwwroot\build\" />
     <Folder Include="wwwroot\build\css\" />
     <Folder Include="wwwroot\public\css\" />
-    <Folder Include="wwwroot\src\pages\" />
-    <Folder Include="wwwroot\src\components\" />
+    <Folder Include="wwwroot\src\components\HOC\" />
+    <Folder Include="wwwroot\src\pages\auth\" />
     <Folder Include="wwwroot\src\services\" />
     <Folder Include="wwwroot\src\themes\" />
   </ItemGroup>
