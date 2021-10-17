@@ -2,7 +2,7 @@ import IUser from "ModelsDto/User";
 import { StorageHelper } from "./StorageHelper";
 
 
-export default class BaseService {
+export default abstract class BaseService {
     protected baseUrl = "/api";
 
     public async Get<T>(path: string, headers?: Headers): Promise<T>{
@@ -26,7 +26,17 @@ export default class BaseService {
 
     public async Post<T>(path: string, body: BodyInit, externalHeaders?: Headers): Promise<T>{
         let headers = externalHeaders ?? new Headers();
-        this.SetDefaultHeaders(headers);
+        this.setDefaultHeaders(headers);
+        return this.post(path, body, headers);
+    }
+
+    public async PostAuth<T>(path: string, body: BodyInit, externalHeaders?: Headers): Promise<T>{
+        let headers = externalHeaders ?? new Headers();
+        this.setDefaultContentTypeHeader(headers);
+        return this.post(path, body, headers);
+    }
+
+    private async post<T>(path: string, body: BodyInit, headers: Headers): Promise<T>{
         try {
             const responce = await fetch(this.baseUrl + path, {
                 method: "POST",
@@ -46,12 +56,12 @@ export default class BaseService {
     }
 
 
-    private SetDefaultHeaders(currentHeaders: Headers){
-        this.SetAuthHeader(currentHeaders);
-        this.SetDefaultContentTypeHeader(currentHeaders);
+    private setDefaultHeaders(currentHeaders: Headers){
+        this.setAuthHeader(currentHeaders);
+        this.setDefaultContentTypeHeader(currentHeaders);
     }
 
-    private SetAuthHeader(headers: Headers){
+    private setAuthHeader(headers: Headers){
         if(!headers.get("Authorization")){
             const currentUser: IUser = StorageHelper.get({name: "user"});
             if(currentUser !== null)
@@ -59,7 +69,7 @@ export default class BaseService {
         }
     }
 
-    private SetDefaultContentTypeHeader(headers: Headers){
+    private setDefaultContentTypeHeader(headers: Headers){
         if(!headers.get("Content-Type")){
             headers.append("Content-Type", "application/json");
         }
